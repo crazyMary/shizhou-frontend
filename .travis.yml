@@ -13,7 +13,6 @@ branches:
 
 script:
   - npm run build
-  - echo "SERVER_PWD" | ssh root@"SERVER_IP" --password-stdin
 
 after_success:
   - sshpass -p $SERVER_PWD scp -o stricthostkeychecking=no -r ./dist/. root@"$SERVER_IP":~/html
