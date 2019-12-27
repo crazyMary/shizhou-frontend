@@ -8,6 +8,8 @@ const {
   __DEV__,
   EXTERNAL_CONF,
   __PAGES__,
+  CUR_ENV_VAR,
+  ENV,
   styleLoader,
   Merge
 } = require('./shared')
@@ -15,9 +17,6 @@ const { ProvidePlugin, DefinePlugin, NoEmitOnErrorsPlugin } = webpack
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HappyPack = require('happypack')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const SERVER_HOST = (EXTERNAL_CONF['API_ENV']['list'].find(
-  item => item.value === process.env.API_ENV
-) || {})['host']
 
 const entry = {}
 __PAGES__.forEach(function(page) {
@@ -89,8 +88,8 @@ function stringifyValue(o) {
 const definePlugin = new DefinePlugin(
   Merge(
     {
-      ENV: JSON.stringify(process.env.API_ENV),
-      SERVER_HOST: JSON.stringify(SERVER_HOST)
+      ENV: JSON.stringify(ENV),
+      SERVER_HOST: JSON.stringify(CUR_ENV_VAR.serverHost)
     },
     stringifyValue(EXTERNAL_CONF['webpack']['base']['DefinePlugin'])
   )

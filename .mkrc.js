@@ -22,20 +22,17 @@ module.exports = {
       plugins: []
     }
   },
-  API_ENV: {
-    list: [{ name: '测试', value: 'test', host: '//saastest1.myweimai.com/' }],
-    choosen: 'test'
+  ENV: 'dev',
+  ENV_VAR: {
+    dev: {
+      publicPath: '/',
+      serverHost: '/'
+    }
   },
   pageConf: {
     icon: '',
     __page_index__: {
       title: '史家门-登录'
     }
-  },
-  depConf: {
-    target: 'dist',
-    remote: '/patient/h5',
-    cdn: '//internet-hospital.myweimai.com',
-    name: 'xx'
   }
 }

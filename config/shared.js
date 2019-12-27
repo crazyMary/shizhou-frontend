@@ -9,9 +9,10 @@ const DIST_PATH = path.resolve(cwd, 'dist')
 const argv = require('optimist').argv
 const __DEV__ = argv['dev']
 const __BUILD__ = !__DEV__ && argv['build']
-const __BUILD__ANALYZER__ = __BUILD__ && argv['analyzer']
 const EXTERNAL_CONF = require(path.resolve(cwd, './.mkrc'))
 const __PAGES__ = fs.readdirSync(path.resolve(__dirname, '../src/pages'))
+const ENV = EXTERNAL_CONF['ENV']
+const CUR_ENV_VAR = EXTERNAL_CONF['ENV_VAR'][ENV]
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // styleloader
@@ -22,14 +23,9 @@ styleLoader['use'] = __DEV__
       'style-loader?sourceMap',
       'css-loader?sourceMap',
       'postcss-loader?sourceMap',
-      'sass-loader?sourceMap',
+      'sass-loader?sourceMap'
     ]
-  : [
-      MiniCssExtractPlugin.loader,
-      'css-loader',
-      'postcss-loader',
-      'sass-loader',
-    ]
+  : [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
 
 const getLocalIP = function() {
   const ifaces = require('os').networkInterfaces()
@@ -61,5 +57,6 @@ module.exports = {
   __PAGES__,
   getLocalIP,
   __BUILD__,
-  __BUILD__ANALYZER__
+  ENV,
+  CUR_ENV_VAR
 }

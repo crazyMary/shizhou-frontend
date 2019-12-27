@@ -5,7 +5,7 @@ const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware')
 const open = require('open')
 const compiler = webpack(require('./webpack.dev'))
 const output = require('friendly-errors-webpack-plugin/src/output')
-const PORT = EXTERNAL_CONF.PORT
+const origin = `${getLocalIP()}:${EXTERNAL_CONF.PORT}`
 
 app.use(
   devMiddleware(compiler, {
@@ -14,9 +14,7 @@ app.use(
   })
 )
 app.use(hotMiddleware(compiler))
-
 output.clearConsole()
-
-open(`http://${getLocalIP()}:${PORT}/${global.startPage}.html`)
-
-app.listen(PORT)
+app.listen(EXTERNAL_CONF.PORT, function() {
+  open(`http://${origin}/${global.startPage}.html`)
+})

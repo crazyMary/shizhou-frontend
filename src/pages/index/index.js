@@ -1,4 +1,5 @@
 import '@shared/global.scss'
+
 function App() {
   return ''
 }

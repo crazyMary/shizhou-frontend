@@ -7,10 +7,8 @@
   ],
   "scripts": {
     "prebuild": "npx rimraf dist",
-    "start:proxy": "node config/webpack --dev --proxy",
     "start": "node config/webpack --dev",
     "build": "node config/webpack --build",
-    "build:analyzer": "npm run prebuild && node config/webpack --build --analyzer",
     "deploy": "ihos dp2"
   },
   "keywords": [],

@@ -8,17 +8,14 @@ const {
   CLI_NODE_MODULES,
   EXTERNAL_NODE_MODULES,
   EXTERNAL_CONF,
-  __BUILD__ANALYZER__
+  CUR_ENV_VAR
 } = require('./shared')
 const base = require('./webpack.base')
 const WebpackParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const baseConf = require('./webpack.base')
 const AddSignature = require('./plugins/AddSignature')
-const { remote, name, cdn } = EXTERNAL_CONF.depConf
 
 const mode = 'production'
 const output = {
@@ -26,7 +23,7 @@ const output = {
   filename: 'static/js/[name].[contenthash:8].js',
   chunkFilename: 'static/js/[name].[contenthash:8].js',
   pathinfo: false,
-  publicPath: cdn + path.join('/', remote, process.env.API_ENV, name)
+  publicPath: CUR_ENV_VAR['publicPath']
 }
 // plugins
 const webpackParallelUglifyPlugin = new WebpackParallelUglifyPlugin({
@@ -43,8 +40,7 @@ const optimizeCSSAssetsPlugin = new OptimizeCSSAssetsPlugin()
 const plugins = [
   miniCssExtractPlugin,
   new AddSignature(),
-  new webpack.HashedModuleIdsPlugin(),
-  __BUILD__ANALYZER__ && new BundleAnalyzerPlugin()
+  new webpack.HashedModuleIdsPlugin()
 ]
   .concat(EXTERNAL_CONF['webpack']['build']['plugins'])
   .filter(Boolean)
