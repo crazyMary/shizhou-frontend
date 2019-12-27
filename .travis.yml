@@ -5,7 +5,7 @@ node_js:
 
 branches:
   only:
-    - /^dev-.*$/
+    - /^dev\/.*$/
 
 before_install:
   - npm install
