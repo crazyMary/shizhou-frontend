@@ -3,12 +3,14 @@ language: node_js
 node_js:
   - '12'
 
+git:
+  quiet: true
+
 branches:
   only:
     - /^dev\/.*$/
-
-before_install:
-  - npm install
+    - master
 
 script:
   - npm run build
+  - echo "SERVER_PWD" | ssh root@"SERVER_IP" --password-stdin
