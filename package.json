@@ -75,11 +75,11 @@
   },
   "lint-staged": {
     "linters": {
-      "*.js": [
+      "src/*.js": [
         "eslint --fix",
         "git add"
       ],
-      "*.{scss,css}": [
+      "src/*.{scss}": [
         "stylelint --fix",
         "git add"
       ]
