@@ -1,0 +1,90 @@
+{
+  "name": "shizhou_fe",
+  "version": "1.0.0",
+  "description": "",
+  "sideEffects": [
+    "src/**/*.scss"
+  ],
+  "scripts": {
+    "prebuild": "npx rimraf dist",
+    "start:proxy": "node config/webpack --dev --proxy",
+    "start": "node config/webpack --dev",
+    "build": "node config/webpack --build",
+    "build:analyzer": "npm run prebuild && node config/webpack --build --analyzer",
+    "deploy": "ihos dp2"
+  },
+  "keywords": [],
+  "author": "liuxiang",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/helper-replace-supers": "^7.2.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.4.7",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-import": "^1.11.0",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "happypack": "^5.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "inquirer": "^6.2.2",
+    "koa": "^2.11.0",
+    "koa-webpack-middleware": "^1.0.7",
+    "lint-staged": "^8.1.4",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "open": "^0.0.5",
+    "optimist": "^0.6.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-scss": "^2.0.0",
+    "prettier": "^1.17.1",
+    "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
+    "style-loader": "^0.23.1",
+    "stylelint": "^10.0.1",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.9.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.0",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-merge": "^4.2.1",
+    "webpack-parallel-uglify-plugin": "^1.1.0",
+    "webpack-px2rem-loader": "^0.0.4"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "core-js": "2",
+    "mk_url": "^1.0.8",
+    "normalize.css": "^8.0.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "eslint --fix",
+        "git add"
+      ],
+      "*.{scss,css}": [
+        "stylelint --fix",
+        "git add"
+      ]
+    }
+  }
+}

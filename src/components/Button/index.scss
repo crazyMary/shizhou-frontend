@@ -1,0 +1,24 @@
+.mk-button {
+  width: 100%;
+  border-radius: 2px;
+  line-height: 38px;
+  text-align: center;
+  color: #999;
+  background-color: #eee;
+  cursor: pointer;
+
+  &.mk-button-primary {
+    color: white;
+    background-color: darkcyan;
+  }
+}
+
+.mk-button-group {
+  display: flex;
+  justify-content: flex-end;
+
+  .mk-button {
+    width: 6em;
+    margin-left: 10px;
+  }
+}

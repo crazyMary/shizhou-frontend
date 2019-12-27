@@ -1,0 +1,70 @@
+* {
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: #333;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Hiragino Sans GB', 'Segoe UI',
+    'Microsoft YaHei', sans-serif;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+form {
+  margin: 0;
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none outside none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  color: #20a0ff;
+}
+
+$fszMin: 12;
+$fszMax: 26;
+
+@while $fszMin<=$fszMax {
+  .fsz#{$fszMin} {
+    font-size: #{$fszMin}px;
+  }
+  $fszMin: $fszMin + 2;
+}

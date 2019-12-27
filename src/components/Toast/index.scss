@@ -1,0 +1,39 @@
+.mk-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 4px;
+  background-color: white;
+  color: #666;
+  animation: fade-in-out 4s ease-out;
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+      top: 0;
+    }
+
+    20% {
+      top: 60px;
+    }
+
+    40% {
+      opacity: 1;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      top: 60px;
+    }
+  }
+
+  &-text {
+    margin-left: 6px;
+    font-size: 12px;
+  }
+}

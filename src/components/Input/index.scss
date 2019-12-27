@@ -1,0 +1,20 @@
+.mk-input {
+  border: none;
+  line-height: 22px;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  padding: 4px 6px;
+  outline: none;
+  transition: 0.2s;
+
+  &:focus {
+    border-color: tomato;
+  }
+}
+
+.mk-textarea {
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
