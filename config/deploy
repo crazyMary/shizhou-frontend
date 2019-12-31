@@ -6,4 +6,4 @@ else
   html=/root/html/sz/dev
 fi
 
-#sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html
+sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html
