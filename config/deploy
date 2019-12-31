@@ -7,3 +7,5 @@ else
 fi
 
 sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html
+
+echo 'deploy ok!'
