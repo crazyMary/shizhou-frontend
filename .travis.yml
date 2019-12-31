@@ -15,5 +15,4 @@ script:
   - npm run build
 
 after_success:
-  - echo $SERVER_PWD
-  - sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:/root/html/
+  - echo $SERVER_PWD | scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:/root/html/ --password-stdin
