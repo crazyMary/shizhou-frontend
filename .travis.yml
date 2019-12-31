@@ -15,11 +15,10 @@ branches:
     - master
 
 before_install:
-  - ./config/deploy
   - sudo apt-get -y install sshpass
 
 script:
-  - npm run build
+  - ./config/deploy
 
 after_success:
   - sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:/root/html/
