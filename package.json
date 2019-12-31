@@ -9,7 +9,7 @@
     "prebuild": "npx rimraf dist",
     "start": "node config/webpack --dev",
     "build": "node config/webpack --build",
-    "deploy": "ihos dp2"
+    "postbuild": "ls"
   },
   "keywords": [],
   "author": "liuxiang",
