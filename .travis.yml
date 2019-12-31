@@ -11,6 +11,9 @@ branches:
     - /^dev\/.*$/
     - master
 
+before_script:
+  - yum install sshpass
+
 script:
   - npm run build
 
