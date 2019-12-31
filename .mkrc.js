@@ -22,9 +22,12 @@ module.exports = {
       plugins: []
     }
   },
-  ENV: 'dev',
   ENV_VAR: {
     dev: {
+      publicPath: '/',
+      serverHost: '/'
+    },
+    production: {
       publicPath: '/',
       serverHost: '/'
     }

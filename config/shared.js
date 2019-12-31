@@ -11,7 +11,7 @@ const __DEV__ = argv['dev']
 const __BUILD__ = !__DEV__ && argv['build']
 const EXTERNAL_CONF = require(path.resolve(cwd, './.mkrc'))
 const __PAGES__ = fs.readdirSync(path.resolve(__dirname, '../src/pages'))
-const ENV = EXTERNAL_CONF['ENV']
+const ENV = process.env.NODE_ENV || 'dev'
 const CUR_ENV_VAR = EXTERNAL_CONF['ENV_VAR'][ENV]
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 

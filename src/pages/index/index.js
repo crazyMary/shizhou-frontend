@@ -1,5 +1,5 @@
 import '@shared/global.scss'
-
+console.log(ENV)
 function App() {
   return ''
 }

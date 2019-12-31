@@ -1,17 +1,21 @@
 language: node_js
 
-node_js:
-  - '12'
+node_js: stable
 
 git:
   quiet: true
+
+cache:
+  directories:
+    - node_modules
 
 branches:
   only:
     - /^dev\/.*$/
     - master
 
-before_script:
+before_install:
+  - ./config/deploy
   - sudo apt-get -y install sshpass
 
 script:
