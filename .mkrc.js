@@ -24,11 +24,11 @@ module.exports = {
   },
   ENV_VAR: {
     dev: {
-      publicPath: '/',
+      publicPath: '/root/html/sz/dev/',
       serverHost: '/'
     },
     production: {
-      publicPath: '/',
+      publicPath: '/root/html/sz/production/',
       serverHost: '/'
     }
   },
