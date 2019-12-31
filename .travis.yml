@@ -15,5 +15,6 @@ script:
   - npm run build
 
 after_success:
+  - ls
   - export SSHPASS=$SERVER_PWD
-  - sshpass -e scp -P 29134 -o stricthostkeychecking=no -r ./dist/* root@$SERVER_IP:/root/html/
+  - sshpass -e scp -o stricthostkeychecking=no -r ./dist/* root@$SERVER_IP:/root/html/
