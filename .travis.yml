@@ -12,7 +12,7 @@ branches:
     - master
 
 before_script:
-  - yum install sshpass
+  - sudo apt-get -y install sshpass
 
 script:
   - npm run build
