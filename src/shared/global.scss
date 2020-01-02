@@ -59,6 +59,12 @@ a {
   color: #20a0ff;
 }
 
+.wrapper{
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 $fszMin: 12;
 $fszMax: 26;
 
