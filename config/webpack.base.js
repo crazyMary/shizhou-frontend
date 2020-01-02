@@ -47,8 +47,7 @@ fileLoader['use'] = {
   loader: 'file-loader',
   options: {
     name: '[name].[contenthash:8].[ext]',
-    outputPath: 'static/image',
-    publicPath: 'static/image'
+    outputPath: 'static/image'
   }
 }
 
