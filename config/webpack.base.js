@@ -48,7 +48,7 @@ fileLoader['use'] = {
   options: {
     name: '[name].[contenthash:8].[ext]',
     outputPath: 'static/image',
-    publicPath: 'https://baidu.com/a'
+    publicPath: '/' //cdn地址 无cdn可不配置
   }
 }
 
