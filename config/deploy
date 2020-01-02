@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# if [ $TRAVIS_BRANCH = master ]; then
-#   html=/root/html/sz/production
-# else 
-#   html=/root/html/sz/dev
-# fi
+if [ $TRAVIS_BRANCH = master ]; then
+  html=/root/html/sz/production
+else 
+  html=/root/html/sz/dev
+fi
 
-# sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html
+sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html
 
-# echo 'deploy ok!'
+echo 'deploy ok!'
