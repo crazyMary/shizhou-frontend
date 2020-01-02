@@ -47,7 +47,8 @@ fileLoader['use'] = {
   loader: 'file-loader',
   options: {
     name: '[name].[contenthash:8].[ext]',
-    outputPath: 'static/image'
+    outputPath: 'static/image',
+    publicPath: 'https://baidu.com/a'
   }
 }
 
