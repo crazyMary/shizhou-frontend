@@ -1,6 +1,7 @@
 import '@shared/global.scss'
 import './index.scss'
-import pic from '@assets/kid.JPG'
+import pic from '@assets/1.png'
+
 function App() {
   return (
     <div id="LoginPage">

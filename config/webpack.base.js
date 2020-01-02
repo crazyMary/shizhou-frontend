@@ -37,18 +37,15 @@ scriptLoader['include'] = path.resolve(cwd, 'src')
 scriptLoader['exclude'] = [CLI_NODE_MODULES, EXTERNAL_NODE_MODULES]
 scriptLoader['use'] = [{ loader: 'happypack/loader?id=happyloader' }]
 
-const urlLoader = {}
-urlLoader['test'] = /\.(png|jpg|gif)$/i
-urlLoader['use'] = [{ loader: 'url-loader', options: { limit: 8192 } }]
-
 const fileLoader = {}
 fileLoader['test'] = /\.(png|jpe?g|gif)$/i
 fileLoader['use'] = {
   loader: 'file-loader',
   options: {
+    esModule: false,
     name: '[name].[contenthash:8].[ext]',
-    outputPath: 'static/image',
-    publicPath: '/' //cdn地址 无cdn可不配置
+    outputPath: 'static/image' //打包目录
+    // publicPath: '' //cdn地址 无cdn可不配置
   }
 }
 
