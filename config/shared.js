@@ -14,6 +14,7 @@ const __PAGES__ = fs.readdirSync(path.resolve(__dirname, '../src/pages'))
 const ENV = process.env.TRAVIS_BRANCH == 'master' ? 'production' : 'dev'
 const CUR_ENV_VAR = EXTERNAL_CONF['ENV_VAR'][ENV]
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const IP = require('ip')
 
 // styleloader
 const styleLoader = {}
@@ -27,24 +28,10 @@ styleLoader['use'] = __DEV__
     ]
   : [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
 
-const getLocalIP = function() {
-  const ifaces = require('os').networkInterfaces()
-  const ips = []
-  for (const key in ifaces) {
-    if (ips.length) break
-    for (const ifKey in ifaces[key]) {
-      const details = ifaces[key][ifKey]
-      if (details.family === 'IPv6' || details.address == '127.0.0.1') continue
-      ips.push(details.address)
-      break
-    }
-  }
-  return ips[0]
-}
-
 module.exports = {
   path,
   fs,
+  IP,
   webpack,
   cwd,
   CLI_NODE_MODULES,
@@ -55,7 +42,6 @@ module.exports = {
   DIST_PATH,
   styleLoader,
   __PAGES__,
-  getLocalIP,
   __BUILD__,
   ENV,
   CUR_ENV_VAR

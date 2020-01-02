@@ -1,11 +1,11 @@
-const { EXTERNAL_CONF, webpack, getLocalIP } = require('./shared')
+const { EXTERNAL_CONF, webpack, IP } = require('./shared')
 const Koa = require('koa')
 const app = new Koa()
 const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware')
 const open = require('open')
 const compiler = webpack(require('./webpack.dev'))
 const output = require('friendly-errors-webpack-plugin/src/output')
-const origin = `${getLocalIP()}:${EXTERNAL_CONF.PORT}`
+const origin = `${IP.address()}:${EXTERNAL_CONF.PORT}`
 
 app.use(
   devMiddleware(compiler, {

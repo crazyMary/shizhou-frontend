@@ -9,11 +9,11 @@ module.exports = {
         MK_URL: 'mk_url'
       },
       DefinePlugin: {},
-      alias: {},
+      alias: {
+        
+      },
       plugins: [],
-      externals: {
-        ihos: 'ihos'
-      }
+      externals: {}
     },
     dev: {
       plugins: []

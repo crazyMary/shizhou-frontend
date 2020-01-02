@@ -37,6 +37,21 @@ scriptLoader['include'] = path.resolve(cwd, 'src')
 scriptLoader['exclude'] = [CLI_NODE_MODULES, EXTERNAL_NODE_MODULES]
 scriptLoader['use'] = [{ loader: 'happypack/loader?id=happyloader' }]
 
+const urlLoader = {}
+urlLoader['test'] = /\.(png|jpg|gif)$/i
+urlLoader['use'] = [{ loader: 'url-loader', options: { limit: 8192 } }]
+
+const fileLoader = {}
+fileLoader['test'] = /\.(png|jpe?g|gif)$/i
+fileLoader['use'] = {
+  loader: 'file-loader',
+  options: {
+    name: '[name].[contenthash:8].[ext]',
+    outputPath: 'static/image',
+    publicPath: 'static/image'
+  }
+}
+
 // plugin
 const pagesPlugin = __PAGES__.map(function(chunk) {
   const pageConf = EXTERNAL_CONF['pageConf']
@@ -126,7 +141,8 @@ resolve['extensions'] = ['.js', '.scss', '.css']
 resolve['alias'] = Merge(
   {
     '@components': path.resolve(cwd, 'src/components'),
-    '@shared': path.resolve(cwd, 'src/shared')
+    '@shared': path.resolve(cwd, 'src/shared'),
+    '@assets': path.resolve(cwd, 'src/assets')
   },
   EXTERNAL_CONF['webpack']['base']['alias']
 )
@@ -137,7 +153,7 @@ const externals = Merge({}, EXTERNAL_CONF['webpack']['base']['externals'])
 
 module.exports = {
   entry,
-  module: { rules: [scriptLoader, styleLoader] },
+  module: { rules: [scriptLoader, styleLoader, fileLoader] },
   plugins,
   resolve,
   externals

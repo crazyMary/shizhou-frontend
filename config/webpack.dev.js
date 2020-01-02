@@ -8,14 +8,14 @@ const {
   CLI_NODE_MODULES,
   EXTERNAL_NODE_MODULES,
   EXTERNAL_CONF,
-  getLocalIP
+  IP
 } = require('./shared')
 const baseConf = require('./webpack.base')
 
 const mode = 'development'
 const output = {
   filename: '[name].js',
-  publicPath: `//${getLocalIP()}:${EXTERNAL_CONF.PORT}/`
+  publicPath: `//${IP.address()}:${EXTERNAL_CONF.PORT}/`
 }
 const devtool = 'cheap-module-eval-source-map'
 // plugins
