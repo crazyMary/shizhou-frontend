@@ -62,6 +62,7 @@
     "webpack-px2rem-loader": "^0.0.4"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "core-js": "2",
     "mk_url": "^1.0.8",
@@ -76,11 +77,11 @@
   },
   "lint-staged": {
     "linters": {
-      "src/*.js": [
+      "src/**/*.js": [
         "eslint --fix",
         "git add"
       ],
-      "src/*.{scss}": [
+      "src/**/*.{scss}": [
         "stylelint --fix",
         "git add"
       ]
