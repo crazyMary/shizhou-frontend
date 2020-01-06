@@ -1,7 +1,11 @@
 import '@shared/global.scss'
 import './index.scss'
-API
+
 function App() {
-  return <div id="LoginPage" className="wrapper"></div>
+  return (
+    <div id="LoginPage" className="wrapper">
+      {ENV}
+    </div>
+  )
 }
 RenderDOM(<App />, document.querySelector('#app'))
