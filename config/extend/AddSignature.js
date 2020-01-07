@@ -1,12 +1,13 @@
 class AddSignature {
   apply(compiler) {
     compiler.hooks.emit.tapAsync('AddSignature', (compilation, callback) => {
-      const jsAssets = Object.keys(compilation.assets).filter(asset =>
-        /\.(js|css)$/.test(asset)
+      const assets = compilation.assets
+      const buildAssets = Object.keys(assets).filter(asset =>
+        /^static.+\.js$/.test(asset)
       )
-      jsAssets.forEach(name => {
-        const rawCode = compilation.assets[name].source()
-        compilation.assets[name] = {
+      buildAssets.forEach(name => {
+        const rawCode = assets[name].source()
+        assets[name] = {
           source: () =>
             rawCode.replace(
               /^/,

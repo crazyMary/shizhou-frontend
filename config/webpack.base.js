@@ -34,7 +34,6 @@ __PAGES__.forEach(function(page) {
 const scriptLoader = {}
 scriptLoader['test'] = /\.(js)$/
 scriptLoader['include'] = path.resolve(cwd, 'src')
-scriptLoader['exclude'] = [CLI_NODE_MODULES, EXTERNAL_NODE_MODULES]
 scriptLoader['use'] = ['happypack/loader?id=happyloader']
 
 const fileLoader = {}
@@ -148,10 +147,16 @@ resolve['modules'] = [CLI_NODE_MODULES, EXTERNAL_NODE_MODULES]
 // externals
 const externals = Merge({}, EXTERNAL_CONF['webpack']['base']['externals'])
 
+// resolveLoader loader查找路径
+const resolveLoader = {
+  modules: ['node_modules', path.resolve(__dirname, 'extend')]
+}
+
 module.exports = {
   entry,
   module: { rules: [scriptLoader, styleLoader, fileLoader] },
   plugins,
   resolve,
-  externals
+  externals,
+  resolveLoader
 }
