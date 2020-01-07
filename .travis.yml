@@ -22,6 +22,5 @@ script:
 
 after_success:
   - ./config/deploy
-
-notifications:
-  webhooks: https://oapi.dingtalk.com/robot/send?access_token=b75b93dabc69b6f9b5f4ff8dac855930b75c812fcb44c4197eaac366e56fca84
+# notifications:
+#   webhooks: https://oapi.dingtalk.com/robot/send?access_token=b75b93dabc69b6f9b5f4ff8dac855930b75c812fcb44c4197eaac366e56fca84

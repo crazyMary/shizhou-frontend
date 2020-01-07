@@ -35,7 +35,7 @@ const scriptLoader = {}
 scriptLoader['test'] = /\.(js)$/
 scriptLoader['include'] = path.resolve(cwd, 'src')
 scriptLoader['exclude'] = [CLI_NODE_MODULES, EXTERNAL_NODE_MODULES]
-scriptLoader['use'] = [{ loader: 'happypack/loader?id=happyloader' }]
+scriptLoader['use'] = ['happypack/loader?id=happyloader']
 
 const fileLoader = {}
 fileLoader['test'] = /\.(png|jpe?g|gif)$/i

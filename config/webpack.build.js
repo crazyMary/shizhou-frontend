@@ -16,6 +16,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const baseConf = require('./webpack.base')
 const AddSignature = require('./plugins/AddSignature')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 const mode = 'production'
 const output = {
@@ -39,8 +40,14 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 const optimizeCSSAssetsPlugin = new OptimizeCSSAssetsPlugin()
 const plugins = [
   miniCssExtractPlugin,
-  new AddSignature(),
-  new webpack.HashedModuleIdsPlugin()
+  new webpack.HashedModuleIdsPlugin(),
+  new webpack.DllReferencePlugin({
+    manifest: require(path.join(cwd, 'dist/react_dll-manifest.json'))
+  }),
+  new AddAssetHtmlPlugin({
+    filepath: path.resolve(cwd, 'dist/react_dll.js')
+  })
+  // new AddSignature()
 ]
   .concat(EXTERNAL_CONF['webpack']['build']['plugins'])
   .filter(Boolean)
@@ -62,12 +69,6 @@ module.exports = Merge(baseConf, {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           priority: -10,
-          enforce: true
-        },
-        'react-dll': {
-          test: /[\\/]node_modules[\\/](react|react-dom|classnames)/,
-          name: 'react-dll',
-          priority: 10,
           enforce: true
         }
       }
