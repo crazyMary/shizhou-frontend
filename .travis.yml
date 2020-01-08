@@ -21,9 +21,4 @@ before_script: skip
 
 script:
   - npm run build
-
-deploy:
-  provider: script
-  script: ./config/deploy
-  on:
-    all_branches: true
+  - ./config/deploy
