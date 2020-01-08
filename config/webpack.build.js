@@ -30,7 +30,7 @@ const output = {
 const webpackParallelUglifyPlugin = new WebpackParallelUglifyPlugin({
   uglifyJS: {
     output: { beautify: false, comments: false },
-    compress: { drop_console: true, collapse_vars: true, reduce_vars: true }
+    compress: { drop_console: false, collapse_vars: true, reduce_vars: true }
   }
 })
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
