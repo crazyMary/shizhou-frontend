@@ -27,7 +27,7 @@ module.exports = {
     },
     production: {
       publicPath: '/',
-      serverHost: '/'
+      serverHost: '//127.0.0.1:3334'
     }
   },
   pageConf: {
