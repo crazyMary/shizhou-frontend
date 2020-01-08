@@ -9,9 +9,7 @@ module.exports = {
         MK_URL: 'mk_url'
       },
       DefinePlugin: {},
-      alias: {
-        
-      },
+      alias: {},
       plugins: [],
       externals: {}
     },
@@ -25,7 +23,7 @@ module.exports = {
   ENV_VAR: {
     dev: {
       publicPath: '/',
-      serverHost: '/'
+      serverHost: '//127.0.0.1:3333'
     },
     production: {
       publicPath: '/',

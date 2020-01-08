@@ -14,13 +14,14 @@ instance.interceptors.request.use(
     config.cancelToken = new CancelToken(c =>
       pendings.push({ url: config.url, c })
     )
+    config.headers.Authorization = '11'
     return config
   },
   e => Promise.reject(e)
 )
 
-instance.interceptors.response.use(res => {
-  return (
+instance.interceptors.response.use(
+  res =>
     new Promise((resolve, reject) => {
       let { code, data, message } = res.data
       if (code === SUCCESS_CODE) {
@@ -31,22 +32,21 @@ instance.interceptors.response.use(res => {
       }
       removePending(res.config)
     }),
-    e => Promise.reject(e)
-  )
-})
+  e => Promise.reject(e)
+)
 
 const http = {
   domain: '',
   errorHandler: () => {},
   get: (url, params) => {
     params = Object.assign({}, params, { _: Date.now() })
-    return this.send({ method: 'get', url, params })
+    return http.send({ method: 'get', url, params })
   },
   post: (url, data) => {
-    return this.send({ method: 'post', url, data })
+    return http.send({ method: 'post', url, data })
   },
   send: args => {
-    args.url = this.domain + args.url
+    args.url = http.domain + args.url
     return instance(args)
   }
 }
@@ -58,7 +58,7 @@ const httpProxy = new Proxy(http, {
         if (isFunc(value)) {
           return (target[key] = value)
         } else {
-          console.error('args should be typeof function')
+          console.warn('errorHandler should be typeof function')
         }
         break
       }
@@ -66,12 +66,12 @@ const httpProxy = new Proxy(http, {
         if (isStr(value)) {
           return (target[key] = value)
         } else {
-          console.error('args should be typeof string')
+          console.warn('domain should be typeof string')
         }
         break
       }
       default:
-        console.error(`${key} can't be set`)
+        console.warn(`${key} can't be set`)
         break
     }
     return true

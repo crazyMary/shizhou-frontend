@@ -17,10 +17,13 @@ branches:
 before_install:
   - sudo apt-get -y install sshpass
 
+before_script: skip
+
 script:
   - npm run build
 
-after_success:
-  - ./config/deploy
-# notifications:
-#   webhooks: https://oapi.dingtalk.com/robot/send?access_token=b75b93dabc69b6f9b5f4ff8dac855930b75c812fcb44c4197eaac366e56fca84
+deploy:
+  provider: script
+  script: ./config/deploy
+  on:
+    all_branches: true
