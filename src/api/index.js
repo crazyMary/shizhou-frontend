@@ -1,3 +1,11 @@
 import http from '@shared/http'
-console.log(http.domain)
+import storage from '@shared/storage'
+
+http.domain = SERVER_HOST
+http.errorHandler = function(code, message) {
+  console.log(message)
+}
+
+storage.prefix = `sz-${ENV}`
+
 export const login = params => http.post('/api/user/login', params)
