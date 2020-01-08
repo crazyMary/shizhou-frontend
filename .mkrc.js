@@ -23,11 +23,11 @@ module.exports = {
   ENV_VAR: {
     dev: {
       publicPath: '/',
-      serverHost: '//127.0.0.1/:3333'
+      serverHost: '//127.0.0.1:3333'
     },
     test: {
       publicPath: '/',
-      serverHost: '//122.51.11.77/:3333'
+      serverHost: '//122.51.11.77:3333'
     },
     production: {
       publicPath: '/',
