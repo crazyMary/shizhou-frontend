@@ -3,7 +3,7 @@
 if [ $TRAVIS_BRANCH = master ]; then
   html=/root/html/sz/production/
 else 
-  html=/root/html/sz/dev/
+  html=/root/html/sz/test/
 fi
 
 sshpass -p $SERVER_PWD scp -o StrictHostKeyChecking=no -r ./dist/* root@$SERVER_IP:$html

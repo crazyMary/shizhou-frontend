@@ -11,7 +11,11 @@ const __DEV__ = argv['dev']
 const __BUILD__ = !__DEV__ && argv['build']
 const EXTERNAL_CONF = require(path.resolve(cwd, './.mkrc'))
 const __PAGES__ = fs.readdirSync(path.resolve(__dirname, '../src/pages'))
-const ENV = process.env.TRAVIS_BRANCH == 'master' ? 'production' : 'dev'
+const ENV = __DEV__
+  ? 'dev'
+  : process.env.TRAVIS_BRANCH == 'master'
+  ? 'production'
+  : 'test'
 const CUR_ENV_VAR = EXTERNAL_CONF['ENV_VAR'][ENV]
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const IP = require('ip')
