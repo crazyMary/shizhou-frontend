@@ -5,5 +5,6 @@ http.domain = SERVER_HOST
 http.errorHandler = function(code, message) {
   console.log()
 }
+console.log('!!!')
 
 storage.prefix = `sz-${ENV}`
