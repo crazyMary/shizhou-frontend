@@ -1,6 +1,5 @@
 import '@shared/global.scss'
 import './index.scss'
-import '@shared/init'
 import storage from '@shared/storage'
 import { useEffect } from 'react'
 
