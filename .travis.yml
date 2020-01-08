@@ -21,4 +21,6 @@ before_script: skip
 
 script:
   - npm run build
+
+after_success:
   - ./config/deploy
