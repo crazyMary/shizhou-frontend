@@ -33,14 +33,25 @@ instance.interceptors.response.use(
       }
       removePending(res.config)
     }),
-  e => Promise.reject(e)
+  e => {
+    const status = e.response.status
+    switch (status) {
+      case 401:
+        http.errorHandler(status, '用户未登录')
+        break
+      case 403:
+        http.errorHandler(status, 'token失效')
+        break
+      default:
+        break
+    }
+  }
 )
 
 const http = {
   domain: '',
   errorHandler: () => {},
   get: (url, params) => {
-    params = Object.assign({}, params, { _: Date.now() })
     return http.send({ method: 'get', url, params })
   },
   post: (url, data) => {

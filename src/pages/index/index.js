@@ -10,12 +10,12 @@ function App() {
     })
   }, [])
   function addUser() {
-    // API.adduser({
-    //   username: 'zz',
-    //   password: '123456',
-    //   role: 2,
-    //   nickname: 'zz'
-    // }).then(res => console.log(res))
+    API.adduser({
+      username: 'zz',
+      password: '123456',
+      role: 2,
+      nickname: 'zz'
+    }).then(res => console.log(res))
   }
   return (
     <div id="LoginPage" className="wrapper" onClick={addUser}>
