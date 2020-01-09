@@ -9,3 +9,4 @@ http.errorHandler = function(code, message) {
 storage.prefix = `sz-${ENV}`
 
 export const login = params => http.post('/api/user/login', params)
+export const adduser = params => http.post('/api/user/add', params)

@@ -1,5 +1,6 @@
 import { create, CancelToken } from 'axios'
 import { isFunc, isStr } from './utils'
+import storage from './storage'
 const instance = create()
 const pendings = []
 const SUCCESS_CODE = 200
@@ -14,7 +15,7 @@ instance.interceptors.request.use(
     config.cancelToken = new CancelToken(c =>
       pendings.push({ url: config.url, c })
     )
-    config.headers.Authorization = '11'
+    config.headers.Authorization = 'Bearer ' + storage.getItem('token')
     return config
   },
   e => Promise.reject(e)
