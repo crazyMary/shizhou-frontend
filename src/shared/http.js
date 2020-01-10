@@ -2,19 +2,14 @@ import { create, CancelToken } from 'axios'
 import { isFunc, isStr } from './utils'
 import storage from './storage'
 const instance = create()
-const pendings = []
 const SUCCESS_CODE = 200
-function removePending(config) {
-  const index = pendings.findIndex(pending => pending['url'] === config['url'])
-  index > -1 && pendings.splice(index, 1)['c']()
-}
+const UNAUTH_CODE = 401
+const OUTDATEAUTH_CODE = 403
+let httpLock = false
+let httpQueue = []
 
 instance.interceptors.request.use(
   function(config) {
-    removePending(config)
-    config.cancelToken = new CancelToken(c =>
-      pendings.push({ url: config.url, c })
-    )
     config.headers.Authorization = 'Bearer ' + storage.getItem('token')
     return config
   },
@@ -24,49 +19,77 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   res =>
     new Promise((resolve, reject) => {
-      let { code, data, message } = res.data
+      const { code, data, message } = res.data
       if (code === SUCCESS_CODE) {
         resolve(data)
       } else {
         http.errorHandler(code, message)
         reject(res.data)
       }
-      removePending(res.config)
     }),
   e => {
     const status = e.response.status
     switch (status) {
-      case 401:
+      case UNAUTH_CODE:
         http.errorHandler(status, '用户未登录')
-        break
-      case 403:
-        http.errorHandler(status, 'token失效')
         break
       default:
         break
     }
+    const err = new Error(status)
+    err.status = status
+    throw err
   }
 )
 
 const http = {
   domain: '',
   errorHandler: () => {},
+  tokenUpdateHandler: async () => {
+    const res = await http.get('/api/user/refreshToken', {
+      refreshToken: storage.getItem('refreshToken')
+    })
+    storage
+      .setItem('token', res.token)
+      .setItem('refreshToken', res.refreshToken)
+  },
   get: (url, params) => {
     return http.send({ method: 'get', url, params })
   },
   post: (url, data) => {
     return http.send({ method: 'post', url, data })
   },
-  send: args => {
-    args.url = http.domain + args.url
-    return instance(args)
+  send: async args => {
+    try {
+      const setting = Object.assign({}, args, { url: http.domain + args.url })
+      if (!httpLock || setting.url.match(/refreshToken$/)) {
+        return await instance(setting)
+      } else {
+        return new Promise(resolve => {
+          httpQueue.push(resolve) //收集403之后的请求 待重新发送
+        }).then(() => instance(setting))
+      }
+    } catch (e) {
+      if (e.status === OUTDATEAUTH_CODE) {
+        httpLock = true
+        await http.tokenUpdateHandler()
+        httpLock = false
+        const responese = await http.send(args)
+        httpQueue.forEach(item => item())
+        httpQueue = []
+        return responese
+      } else {
+        return Promise.reject(e)
+      }
+    }
   }
 }
 
 const httpProxy = new Proxy(http, {
   set(target, key, value) {
     switch (key) {
-      case 'errorHandler': {
+      case 'errorHandler':
+      case 'tokenUpdateHandler': {
         if (isFunc(value)) {
           return (target[key] = value)
         } else {

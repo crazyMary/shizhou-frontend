@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from '@components/Img/react'
+import { useState, useEffect, useRef } from 'react'
 const placeholders = Object.create(null)
 const cacheImg = {}
 

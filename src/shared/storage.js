@@ -18,6 +18,7 @@ const storage = {
       console.warn('key should be string')
     } else {
       localStorage.setItem(`${storage.prefix}-${key}`, value)
+      return storage
     }
   },
   getItem(key) {

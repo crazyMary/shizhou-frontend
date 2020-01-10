@@ -5,7 +5,7 @@ const presets = [
       loose: true,
       modules: false,
       targets: '> 0.25%, not dead',
-      useBuiltIns: 'entry',
+      useBuiltIns: 'usage',
       corejs: 2
     }
   ],
