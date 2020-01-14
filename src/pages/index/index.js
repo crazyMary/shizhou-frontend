@@ -21,7 +21,7 @@ function App() {
   }
   return (
     <div id="LoginPage" className="wrapper" onClick={addUser}>
-      {ENV}
+      <h1>{ENV}</h1>
     </div>
   )
 }
