@@ -1,6 +1,6 @@
-class AddSignature {
+class AddSignaturePlugin {
   apply(compiler) {
-    compiler.hooks.emit.tapAsync('AddSignature', (compilation, callback) => {
+    compiler.hooks.emit.tapAsync('AddSignaturePlugin', (compilation, callback) => {
       const assets = compilation.assets
       const buildAssets = Object.keys(assets).filter(asset =>
         /^static.+\.js$/.test(asset)
@@ -29,4 +29,4 @@ class AddSignature {
   }
 }
 
-module.exports = AddSignature
+module.exports = AddSignaturePlugin

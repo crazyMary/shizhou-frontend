@@ -14,9 +14,9 @@ const base = require('./webpack.base')
 const WebpackParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const baseConf = require('./webpack.base')
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
-const AddSignature = require('./extend/AddSignature')
+const AddSignaturePlugin = require('./extend/AddSignaturePlugin')
+const baseConf = require('./webpack.base')
 
 const mode = 'production'
 const output = {
@@ -47,7 +47,7 @@ const plugins = [
   new AddAssetHtmlPlugin({
     filepath: path.resolve(cwd, 'dist/react_dll.js')
   }),
-  new AddSignature()
+  new AddSignaturePlugin()
 ]
   .concat(EXTERNAL_CONF['webpack']['build']['plugins'])
   .filter(Boolean)
