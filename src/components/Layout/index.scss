@@ -1,0 +1,52 @@
+@import '@shared/var.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#manageHeader {
+  height: 48px;
+  display: flex;
+  padding: 6px 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+
+  .title {
+    font-size: 24px;
+  }
+  .navs {
+    a {
+      color: #666;
+      margin: 0 10px;
+      font-size: 18px;
+      &.active {
+        color: $subThemeColor;
+      }
+    }
+  }
+  .user {
+    .name {
+      margin-right: 10px;
+      color: #666;
+    }
+    .loginout {
+      color: #999;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  }
+}
+
+#manageMain {
+  display: flex;
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

@@ -1,15 +1,18 @@
 .mk-button {
   width: 100%;
   border-radius: 2px;
-  line-height: 38px;
+  line-height: 45px;
   text-align: center;
   color: #999;
   background-color: #eee;
   cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-radius: 4px;
 
   &.mk-button-primary {
     color: white;
-    background-color: darkcyan;
+    background-color: #3e77f7;
   }
 }
 

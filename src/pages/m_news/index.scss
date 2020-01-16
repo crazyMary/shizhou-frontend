@@ -1,0 +1,26 @@
+@import '@shared/var.scss';
+
+#newsManagePage {
+  .news-list {
+    flex-basis: 380px;
+    margin-right: 20px;
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .title {
+        font-size: 18px;
+        flex-basis: 200px;
+      }
+      .addnews {
+        color: $subThemeColor;
+        border-radius: 4px;
+        padding: 4px 10px;
+        background-color: #eee;
+      }
+    }
+  }
+  .news-detail {
+    flex: 1;
+  }
+}

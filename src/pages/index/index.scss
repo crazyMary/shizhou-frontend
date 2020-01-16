@@ -1,3 +1,29 @@
+@import '@shared/var.scss';
+
 #LoginPage {
-  background-color: tomato;
+  display: flex;
+  .bg {
+    flex-basis: 36%;
+    background-color: $bgColor;
+  }
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .form {
+      margin: auto;
+      width: 400px;
+      padding: 16px;
+      &-title {
+        font-size: 28px;
+        margin-bottom: 100px;
+      }
+      &-item {
+        margin-bottom: 26px;
+      }
+      &-btn-wrapper {
+        margin-top: 50px;
+      }
+    }
+  }
 }

@@ -8,8 +8,7 @@ module.exports = function(conf) {
 
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-      <meta name="format-detection" content="email=no,address=no,telephone=no">
+      <meta name="viewport" content="initial-scale=1" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>${title}</title>
       <link rel="shortcut icon" href="${icon}" type="image/x-icon">

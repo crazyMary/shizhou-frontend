@@ -3,10 +3,10 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 4px 10px;
-  border-radius: 4px;
   background-color: white;
   color: #666;
   animation: fade-in-out 4s ease-out;
+  box-shadow: 2px 2px 8px #ccc;
 
   @keyframes fade-in-out {
     0% {

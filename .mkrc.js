@@ -35,9 +35,15 @@ module.exports = {
     }
   },
   pageConf: {
-    icon: '',
+    icon: '//ihos-images.oss-cn-hangzhou.aliyuncs.com/582.ico',
     __page_index__: {
       title: '史家门-登录'
+    },
+    __page_m_news__: {
+      title: '史家门-新闻管理'
+    },
+    __page_m_staff__: {
+      title: '史家门-人员管理'
     }
   }
 }
