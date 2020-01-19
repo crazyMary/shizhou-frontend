@@ -15,7 +15,7 @@ function App() {
   // 更新文章列表
   async function updateList() {
     const res = await API.getArticles()
-    setList(res.map(item => ({ ...item, imgSrc: picUrl(item.imgSrc) })))
+    setList(res)
   }
   // 设置当前文章项目
   function itemClick(index) {
@@ -28,8 +28,11 @@ function App() {
         index={index}
         updateList={updateList}
         itemClick={itemClick}
+        setIndex={setIndex}
       />
-      {list.length ? <NewsDetail form={list[index] || initForm} /> : null}
+      {list.length ? (
+        <NewsDetail form={list[index] || initForm} updateList={updateList} />
+      ) : null}
     </Layout.Manage>
   )
 }

@@ -30,6 +30,7 @@
         padding-bottom: 16px;
         border-bottom: 1px solid #eee;
         padding: 10px;
+        transition: 0.3s;
         &.news-item-active {
           background-color: $bgColor;
         }
@@ -47,6 +48,9 @@
           .title {
             font-size: 16px;
             color: #333;
+          }
+          .field-title {
+            margin-right: 6px;
           }
           .keywords {
             color: $subThemeColor;

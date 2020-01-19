@@ -1,5 +1,5 @@
-import { Modal, Img } from '@components'
-import { parseTime } from '@shared/utils'
+import { Modal, Img, Toast } from '@components'
+import { parseTime, picUrl, Validator } from '@shared/utils'
 import NewsAdd from './NewsAdd'
 import { useRef, useState, useEffect } from 'react'
 const ArticleImg = Img.Default
@@ -11,10 +11,21 @@ export default function(props) {
     const articleModal = Modal({
       title: '添加新闻动态',
       body: <NewsAdd ref={newsRef} />,
-      onOk: async function() {
-        await API.addArticle({ ...newsRef.current, createAt: Date.now() })
-        await props.updateList()
-        articleModal.close()
+      onOk: function() {
+        const validator = new Validator()
+        validator
+          .add(newsRef.current.title, 'isNonEmpty', '标题不能为空')
+          .add(newsRef.current.content, 'isNonEmpty', '内容不能为空')
+          .check()
+          .then(async () => {
+            await API.addArticle({ ...newsRef.current, createAt: Date.now() })
+            await props.updateList()
+            props.setIndex(0)
+            articleModal.close()
+          })
+          .catch(msg => {
+            Toast.info(msg)
+          })
       }
     })
   }
@@ -37,12 +48,18 @@ export default function(props) {
               onClick={() => props.itemClick(index)}
             >
               <div className="news-item-img">
-                <ArticleImg src={item.imgSrc} />
+                <ArticleImg src={picUrl(item.imgSrc)} />
               </div>
               <div className="news-item-text">
                 <div className="title">{item.title}</div>
-                <div className="keywords">{item.keywords}</div>
-                <div className="createtime">{parseTime(item.createAt)}</div>
+                <div>
+                  <i className="field-title">关键词:</i>
+                  <span className="keywords">{item.keywords}</span>
+                </div>
+                <div>
+                  <i className="field-title">发表于:</i>
+                  <span className="createtime">{parseTime(item.createAt)}</span>
+                </div>
               </div>
             </div>
           )
