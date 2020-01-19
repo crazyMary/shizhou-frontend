@@ -24,3 +24,30 @@
     flex: 1;
   }
 }
+
+#newsAdd {
+  .news-form-item {
+    display: flex;
+    margin: 20px 0;
+    align-items: center;
+    .title {
+      color: #999;
+      flex-basis: 6em;
+      text-align: right;
+      margin-right: 10px;
+      flex-shrink: 0;
+      &::after {
+        content: ':';
+      }
+    }
+    .input {
+      flex: 1;
+      label {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        border: 1px solid #eee;
+      }
+    }
+  }
+}

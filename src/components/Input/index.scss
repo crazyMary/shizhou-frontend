@@ -8,6 +8,9 @@
   transition: 0.2s;
   border-radius: 4px;
   font-size: 14px;
+  &[type='file'] {
+    display: none;
+  }
 
   &:focus {
     border-color: #999;

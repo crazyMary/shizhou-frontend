@@ -1,7 +1,7 @@
 @import '@shared/var.scss';
 
 #LoginPage {
-  display: flex;
+  flex-direction: row;
   .bg {
     flex-basis: 36%;
     background-color: $bgColor;

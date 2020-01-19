@@ -11,3 +11,4 @@ const publicApi = '/api/public'
 
 export const login = params => http.post(`${publicApi}/user/login`, params)
 export const adduser = params => http.post(`${privateApi}/user/add`, params)
+export const uploadImg = params => http.post(`${privateApi}/img/upload`, params)

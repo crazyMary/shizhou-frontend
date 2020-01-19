@@ -6,9 +6,14 @@ function ModalComponent(props) {
     props.onOk && props.onOk()
   }
   return (
-    <div className="mk-modal">
+    <>
       <div className="mk-modal-header">
-        <div className="mk-modal-header-title">{props.title}</div>
+        <div className="title">{props.title}</div>
+        <img
+          src="//ihos-images.myweimai.com/6744dc6c163f1fecb875b6c4e99551de.svg"
+          alt=""
+          width="16"
+        />
       </div>
       <div className="mk-modal-body">{props.body}</div>
       <div className="mk-modal-footer">
@@ -19,13 +24,13 @@ function ModalComponent(props) {
           </Button>
         </ButtonGroup>
       </div>
-    </div>
+    </>
   )
 }
 
 function Modal(props) {
   const mask = document.createElement('div')
-  mask.className = 'mk-modal-mask'
+  mask.className = 'mk-modal'
   RenderDOM(<ModalComponent {...props} removeModal={removeModal} />, mask)
   document.body.appendChild(mask)
   function removeModal() {

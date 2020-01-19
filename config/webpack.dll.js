@@ -1,7 +1,7 @@
 const { path, webpack, cwd } = require('./shared')
 module.exports = {
   entry: {
-    react_dll: ['react', 'react-dom', 'classnames']
+    react_dll: ['react', 'react-dom', 'classnames', 'wangeditor']
   },
   output: {
     path: path.resolve(cwd, 'dist'),

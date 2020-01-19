@@ -68,7 +68,8 @@
     "mk_url": "^1.0.8",
     "normalize.css": "^8.0.1",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "wangeditor": "^3.1.1"
   },
   "husky": {
     "hooks": {

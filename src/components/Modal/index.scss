@@ -1,11 +1,12 @@
-.mk-modal-mask {
+@import '@shared/var.scss';
+
+.mk-modal {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
+  background-color: rgba(255, 255, 255, 0.9);
   animation: 0.3s fade-in;
   &.fade-out {
     animation: 0.3s fade-out;
@@ -26,30 +27,21 @@
       opacity: 1;
     }
   }
-}
-
-.mk-modal {
-  margin: auto;
-  width: 450px;
-  border-radius: 2px;
-  background-color: white;
-
   &-header {
+    height: 48px;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
-
-    &-title {
-      font-size: 16px;
-      font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    .title {
+      font-size: 18px;
     }
   }
-
   &-body {
-    padding: 16px 20px;
+    padding: 20px;
   }
-
   &-footer {
-    padding: 10px;
-    border-top: 1px solid #ddd;
+    padding: 20px;
   }
 }
