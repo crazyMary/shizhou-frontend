@@ -49,7 +49,7 @@ function NewsAdd(props, ref) {
         <div className="title">新闻封面</div>
         <div className="input">
           <label>
-            <ArticleImg src={form.imgSrc} />
+            <ArticleImg src={picUrl(form.imgSrc)} />
             <Input type="file" onChange={uploadImg} accept="image/*"></Input>
           </label>
         </div>

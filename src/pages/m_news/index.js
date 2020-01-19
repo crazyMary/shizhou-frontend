@@ -29,7 +29,7 @@ function App() {
         updateList={updateList}
         itemClick={itemClick}
       />
-      <NewsDetail form={list[index] || initForm} />
+      {list.length ? <NewsDetail form={list[index] || initForm} /> : null}
     </Layout.Manage>
   )
 }
