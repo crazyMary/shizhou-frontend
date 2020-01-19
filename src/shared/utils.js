@@ -87,5 +87,5 @@ export function parseTime(stamp) {
 }
 
 export function picUrl(name) {
-  return SERVER_HOST + name
+  return name ? SERVER_HOST + name : ''
 }

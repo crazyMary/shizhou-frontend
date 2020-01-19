@@ -13,7 +13,7 @@ function ImgComponentCreator(placeholder) {
     ...rest
   }) {
     const imgRef = forwardRef || useRef(null)
-    const immediateImg = cacheImg[src] && download
+    const immediateImg = (cacheImg[src] && download) || !src
     const opacity = immediateImg ? '1' : '0.7'
     const [link, setLink] = useState(immediateImg ? src : placeholder)
     useEffect(() => {
@@ -25,6 +25,9 @@ function ImgComponentCreator(placeholder) {
           imgRef.current.style.opacity = '1'
         }
         image.src = src
+      }
+      if (!src) {
+        setLink(placeholder)
       }
     }, [download, src])
     return (

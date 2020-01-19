@@ -1,4 +1,5 @@
-import { Input, Editor, Img } from '@components'
+import { Input, Editor, Img, Button } from '@components'
+import { ButtonGroup } from '@components/Button'
 import { uploadImg, picUrl } from '@shared/utils'
 import { useState, useEffect } from 'react'
 const ArticleImg = Img.Default
@@ -15,7 +16,7 @@ export default function NewsDetail(props) {
     const fd = new FormData()
     fd.append('file', file)
     const res = await API.uploadImg(fd)
-    formChange('imgSrc', picUrl(res.path))
+    formChange('imgSrc', res.path)
   }
   // 编辑表单
   function formChange(type, value) {
@@ -23,6 +24,11 @@ export default function NewsDetail(props) {
       ...form,
       [type]: value
     })
+  }
+  // 更新文章
+  async function updateArticle() {
+    await API.updateArticle(form)
+    props.updateList()
   }
   return (
     <div id="newsDetail" className="news-detail">
@@ -51,7 +57,7 @@ export default function NewsDetail(props) {
         <div className="title">新闻封面</div>
         <div className="input">
           <label>
-            <ArticleImg src={form.imgSrc} />
+            <ArticleImg src={picUrl(form.imgSrc)} />
             <Input type="file" onChange={uploadImg} accept="image/*"></Input>
           </label>
         </div>
@@ -65,6 +71,14 @@ export default function NewsDetail(props) {
             contentChange={content => formChange('content', content)}
           />
         </div>
+      </div>
+      <div style={{ paddingBottom: 10 }}>
+        <ButtonGroup>
+          <Button onClick={() => setForm(props.form)}>恢复</Button>
+          <Button type="primary" onClick={updateArticle}>
+            更改
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   )
