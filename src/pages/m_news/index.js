@@ -2,12 +2,34 @@ import './index.scss'
 import { Layout } from '@components'
 import NewsList from './NewsList'
 import NewsDetail from './NewsDetail'
+import { useState, useEffect } from 'react'
+import { picUrl } from '@shared/utils'
+export const initForm = { title: '', keywords: '', imgSrc: '', content: '' }
 
 function App() {
+  const [index, setIndex] = useState(0)
+  const [list, setList] = useState([])
+  useEffect(() => {
+    updateList()
+  }, [])
+  // 更新文章列表
+  async function updateList() {
+    const res = await API.getArticles()
+    setList(res.map(item => ({ ...item, imgSrc: picUrl(item.imgSrc) })))
+  }
+  // 设置当前文章项目
+  function itemClick(index) {
+    setIndex(index)
+  }
   return (
     <Layout.Manage id="newsManagePage">
-      <NewsList />
-      <NewsDetail />
+      <NewsList
+        list={list}
+        index={index}
+        updateList={updateList}
+        itemClick={itemClick}
+      />
+      <NewsDetail form={list[index] || initForm} />
     </Layout.Manage>
   )
 }

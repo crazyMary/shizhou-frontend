@@ -3,8 +3,8 @@
 #LoginPage {
   flex-direction: row;
   .bg {
-    flex-basis: 36%;
-    background-color: $bgColor;
+    flex-basis: 60%;
+    background: $bgColor url('~@assets/WechatIMG7.jpeg') center/cover no-repeat;
   }
   .form-wrapper {
     display: flex;

@@ -82,9 +82,10 @@ export function getUserInfo() {
   return JSON.parse(storage.getItem('userInfo') || '{}')
 }
 
-export async function uploadImg(file) {
-  const fd = new FormData()
-  fd.append('file', file)
-  // const res = await API.uploadImg(fd)
-  // return res
+export function parseTime(stamp) {
+  return new Date(stamp).toLocaleString()
+}
+
+export function picUrl(name) {
+  return SERVER_HOST + name
 }

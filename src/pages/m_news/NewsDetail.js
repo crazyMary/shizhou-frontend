@@ -1,3 +1,71 @@
-export default function() {
-  return <div className="news-detail"></div>
+import { Input, Editor, Img } from '@components'
+import { uploadImg, picUrl } from '@shared/utils'
+import { useState, useEffect } from 'react'
+const ArticleImg = Img.Default
+
+export default function NewsDetail(props) {
+  const [form, setForm] = useState(props.form)
+  useEffect(() => {
+    setForm(props.form)
+  }, [props.form])
+  // 上传图片
+  async function uploadImg(e) {
+    const [file] = e.target.files
+    if (!file) return
+    const fd = new FormData()
+    fd.append('file', file)
+    const res = await API.uploadImg(fd)
+    formChange('imgSrc', picUrl(res.path))
+  }
+  // 编辑表单
+  function formChange(type, value) {
+    setForm({
+      ...form,
+      [type]: value
+    })
+  }
+  return (
+    <div id="newsDetail" className="news-detail">
+      <div className="news-detail-top">新闻详情</div>
+      <div className="news-form-item">
+        <div className="title">新闻标题</div>
+        <div className="input">
+          <Input
+            placeholder="输入标题"
+            value={form.title}
+            onChange={e => formChange('title', e.target.value)}
+          ></Input>
+        </div>
+      </div>
+      <div className="news-form-item">
+        <div className="title">新闻关键词</div>
+        <div className="input">
+          <Input
+            placeholder="输入关键词"
+            value={form.keywords}
+            onChange={e => formChange('keywords', e.target.value)}
+          ></Input>
+        </div>
+      </div>
+      <div className="news-form-item">
+        <div className="title">新闻封面</div>
+        <div className="input">
+          <label>
+            <ArticleImg src={form.imgSrc} />
+            <Input type="file" onChange={uploadImg} accept="image/*"></Input>
+          </label>
+        </div>
+      </div>
+      <div className="news-form-item">
+        <div className="title">新闻内容</div>
+        <div className="input">
+          <Editor
+            height={400}
+            content={form.content}
+            contentChange={content => formChange('content', content)}
+          />
+        </div>
+      </div>
+    </div>
+  )
 }

@@ -16,17 +16,21 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
+  background-color: $bgColor;
 
   .title {
     font-size: 24px;
   }
   .navs {
+    transform: translateX(-50%);
     a {
       color: #666;
       margin: 0 10px;
       font-size: 18px;
+      border-bottom: 1px dashed #999;
       &.active {
         color: $subThemeColor;
+        border-bottom-color: $subThemeColor;
       }
     }
   }
@@ -46,7 +50,7 @@
 #manageMain {
   display: flex;
   flex: 1;
-  padding: 10px;
+  padding: 0 10px;
   overflow-y: auto;
   overflow-x: hidden;
 }

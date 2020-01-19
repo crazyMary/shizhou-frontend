@@ -35,7 +35,7 @@ Layout.Manage.Header = function() {
   }
   return (
     <header id="manageHeader">
-      <div className="title">史家门后台管理</div>
+      <div className="title">史家门后台管理系统</div>
       <div className="navs">
         {navs.map(({ value, title }) => (
           <a

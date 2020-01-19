@@ -13,6 +13,7 @@ function ModalComponent(props) {
           src="//ihos-images.myweimai.com/6744dc6c163f1fecb875b6c4e99551de.svg"
           alt=""
           width="16"
+          onClick={props.removeModal}
         />
       </div>
       <div className="mk-modal-body">{props.body}</div>

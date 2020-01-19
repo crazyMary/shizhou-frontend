@@ -35,7 +35,7 @@ function App() {
       <div className="bg"></div>
       <div className="form-wrapper">
         <div className="form">
-          <div className="form-title">hello!&emsp;欢迎登录</div>
+          <div className="form-title">HELLO!&ensp;欢迎登录</div>
           <div className="form-item">
             <Input
               placeholder="请输入用户名"
