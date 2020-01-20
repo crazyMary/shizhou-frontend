@@ -1,5 +1,5 @@
 import { create, CancelToken } from 'axios'
-import { isFunc, isStr } from './utils'
+import { isFunc, isStr, isObj } from './utils'
 import storage from './storage'
 const instance = create()
 const SUCCESS_CODE = 200
@@ -54,15 +54,18 @@ const http = {
       .setItem('token', res.token)
       .setItem('refreshToken', res.refreshToken)
   },
-  get: (url, params) => {
+  get: (url, params, opts = {}) => {
+    if (!isObj(opts)) throw new TypeError('opts should be object')
     return http.send({ method: 'get', url, params })
   },
-  post: (url, data) => {
+  post: (url, data, opts = {}) => {
+    if (!isObj(opts)) throw new TypeError('opts should be object')
     return http.send({ method: 'post', url, data })
   },
   send: async args => {
+    if (!isObj(args)) throw new TypeError('argument should be object')
     try {
-      const setting = Object.assign({}, args, { url: http.domain + args.url })
+      const setting = Object.assign({}, args, { baseURL: http.domain })
       if (!httpLock || setting.url.match(/refreshToken$/)) {
         return await instance(setting)
       } else {

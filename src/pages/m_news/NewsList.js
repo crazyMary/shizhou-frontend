@@ -29,6 +29,14 @@ export default function(props) {
       }
     })
   }
+  // 移除文章
+  async function removeArticle(index) {
+    await API.removeArticle({ params: { _id: props.list[index]['_id'] } })
+    await props.updateList()
+    if (index === props.index) {
+      props.setIndex(0)
+    }
+  }
   return (
     <div id="newList" className="news-list">
       <div className="news-list-top">
@@ -60,6 +68,14 @@ export default function(props) {
                   <i className="field-title">发表于:</i>
                   <span className="createtime">{parseTime(item.createAt)}</span>
                 </div>
+              </div>
+              <div
+                className="news-item-remove"
+                onClick={() => {
+                  removeArticle(index)
+                }}
+              >
+                移除
               </div>
             </div>
           )

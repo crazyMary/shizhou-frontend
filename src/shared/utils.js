@@ -89,3 +89,11 @@ export function parseTime(stamp) {
 export function picUrl(name) {
   return name ? SERVER_HOST + name : ''
 }
+
+export async function _uploadImg(e) {
+  const [file] = e.target.files
+  if (!file) return
+  const fd = new FormData()
+  fd.append('file', file)
+  return await API.uploadImg(fd)
+}

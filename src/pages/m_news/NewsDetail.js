@@ -1,6 +1,6 @@
 import { Input, Editor, Img, Button } from '@components'
 import { ButtonGroup } from '@components/Button'
-import { uploadImg, picUrl } from '@shared/utils'
+import { uploadImg, picUrl, _uploadImg } from '@shared/utils'
 import { useState, useEffect } from 'react'
 const ArticleImg = Img.Default
 
@@ -11,11 +11,7 @@ export default function NewsDetail(props) {
   }, [props.form])
   // 上传图片
   async function uploadImg(e) {
-    const [file] = e.target.files
-    if (!file) return
-    const fd = new FormData()
-    fd.append('file', file)
-    const res = await API.uploadImg(fd)
+    const res = await _uploadImg(e)
     formChange('imgSrc', res.path)
   }
   // 编辑表单

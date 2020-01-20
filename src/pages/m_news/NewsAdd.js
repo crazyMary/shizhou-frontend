@@ -1,5 +1,5 @@
 import { Input, Editor, Img } from '@components'
-import { uploadImg, picUrl } from '@shared/utils'
+import { uploadImg, picUrl, _uploadImg } from '@shared/utils'
 import { useState, useEffect, useImperativeHandle, forwardRef } from 'react'
 import { initForm } from './index'
 const ArticleImg = Img.Default
@@ -9,11 +9,7 @@ function NewsAdd(props, ref) {
   useImperativeHandle(ref, () => form)
   // 上传图片
   async function uploadImg(e) {
-    const [file] = e.target.files
-    if (!file) return
-    const fd = new FormData()
-    fd.append('file', file)
-    const res = await API.uploadImg(fd)
+    const res = await _uploadImg(e)
     formChange('imgSrc', res.path)
   }
   // 编辑表单
