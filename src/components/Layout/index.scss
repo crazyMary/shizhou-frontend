@@ -29,8 +29,8 @@
       font-size: 18px;
       border-bottom: 1px dashed #999;
       &.active {
-        color: $subThemeColor;
-        border-bottom-color: $subThemeColor;
+        color: $themeColor;
+        border-bottom-color: $themeColor;
       }
     }
   }
