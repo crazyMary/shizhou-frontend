@@ -72,7 +72,7 @@ export default function NewsDetail(props) {
           />
         </div>
       </div>
-      <div style={{ paddingBottom: 10 }}>
+      <div>
         <ButtonGroup>
           <Button onClick={() => setForm(props.form)}>恢复</Button>
           <Button type="primary" onClick={updateArticle}>

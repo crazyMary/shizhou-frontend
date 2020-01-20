@@ -29,6 +29,9 @@
         border-bottom: 1px solid #eee;
         padding: 10px;
         transition: 0.3s;
+        &:hover {
+          background-color: $bgColor;
+        }
         &.news-item-active {
           background-color: $bgColor;
         }
@@ -59,7 +62,8 @@
   }
   .news-detail {
     flex: 1;
-    padding-top: 10px;
+    padding: 10px 0 10px 10px;
+    border-left: 1px solid #eee;
     &-top {
       font-size: 18px;
       margin-bottom: 20px;

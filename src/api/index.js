@@ -5,6 +5,10 @@ http.domain = SERVER_HOST
 http.errorHandler = function(code, message) {
   Toast.error(message)
 }
+http.unauthHandler = function(code, message) {
+  Toast.error(message)
+  location.href = '/'
+}
 
 const privateApi = '/api/private'
 const publicApi = '/api/public'

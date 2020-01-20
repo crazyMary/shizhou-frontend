@@ -31,7 +31,7 @@ instance.interceptors.response.use(
     const status = e.response.status
     switch (status) {
       case UNAUTH_CODE:
-        http.errorHandler(status, '用户未登录')
+        http.unauthHandler(status, '用户未登录或者认证过期')
         break
       default:
         break
@@ -45,6 +45,7 @@ instance.interceptors.response.use(
 const http = {
   domain: '',
   errorHandler: () => {},
+  unauthHandler: () => {},
   tokenUpdateHandler: async () => {
     const res = await http.get('/api/user/refreshToken', {
       refreshToken: storage.getItem('refreshToken')
@@ -89,7 +90,8 @@ const httpProxy = new Proxy(http, {
   set(target, key, value) {
     switch (key) {
       case 'errorHandler':
-      case 'tokenUpdateHandler': {
+      case 'tokenUpdateHandler':
+      case 'unauthHandler': {
         if (isFunc(value)) {
           return (target[key] = value)
         } else {
