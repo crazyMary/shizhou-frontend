@@ -9,7 +9,8 @@ function NewsAdd(props, ref) {
   useImperativeHandle(ref, () => form)
   // 上传图片
   async function uploadImg(e) {
-    const res = await _uploadImg(e)
+    const [file] = e.target.files
+    const res = await _uploadImg(file)
     formChange('imgSrc', res.path)
   }
   // 编辑表单

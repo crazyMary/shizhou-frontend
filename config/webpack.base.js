@@ -33,8 +33,8 @@ __PAGES__.forEach(function(page) {
 // loaders
 const scriptLoader = {}
 scriptLoader['test'] = /\.(js)$/
-scriptLoader['include'] = path.resolve(cwd, 'src')
-scriptLoader['use'] = ['happypack/loader?id=happyloader']
+scriptLoader['include'] = path.resolve('src')
+scriptLoader['use'] = ['happypack/loader?id=happyBabel']
 
 const fileLoader = {}
 fileLoader['test'] = /\.(png|jpe?g|gif)$/i
@@ -107,7 +107,7 @@ const definePlugin = new DefinePlugin(
 )
 
 const scriptHappyPackPlugin = new HappyPack({
-  id: 'happyloader',
+  id: 'happyBabel',
   threads: 4,
   verbose: false,
   loaders: [
@@ -115,8 +115,7 @@ const scriptHappyPackPlugin = new HappyPack({
       loader: 'babel-loader',
       options: {
         cacheDirectory: true,
-        babelrc: false,
-        extends: path.resolve(__dirname, '../.babelrc.js')
+        extends: path.resolve('.babelrc.js')
       }
     }
   ]
@@ -136,9 +135,9 @@ const resolve = {}
 resolve['extensions'] = ['.js', '.scss', '.css']
 resolve['alias'] = Merge(
   {
-    '@components': path.resolve(cwd, 'src/components'),
-    '@shared': path.resolve(cwd, 'src/shared'),
-    '@assets': path.resolve(cwd, 'src/assets')
+    '@components': path.resolve('src/components'),
+    '@shared': path.resolve('src/shared'),
+    '@assets': path.resolve('src/assets')
   },
   EXTERNAL_CONF['webpack']['base']['alias']
 )

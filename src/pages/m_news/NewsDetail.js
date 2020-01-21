@@ -1,6 +1,6 @@
-import { Input, Editor, Img, Button } from '@components'
+import { Input, Editor, Img, Button, Toast } from '@components'
 import { ButtonGroup } from '@components/Button'
-import { uploadImg, picUrl, _uploadImg } from '@shared/utils'
+import { uploadImg, picUrl, _uploadImg, Validator } from '@shared/utils'
 import { useState, useEffect } from 'react'
 const ArticleImg = Img.Default
 
@@ -11,7 +11,8 @@ export default function NewsDetail(props) {
   }, [props.form])
   // 上传图片
   async function uploadImg(e) {
-    const res = await _uploadImg(e)
+    const [file] = e.target.files
+    const res = await _uploadImg(file)
     formChange('imgSrc', res.path)
   }
   // 编辑表单
@@ -22,9 +23,20 @@ export default function NewsDetail(props) {
     })
   }
   // 更新文章
-  async function updateArticle() {
-    await API.updateArticle(form)
-    props.updateList()
+  function updateArticle() {
+    const validator = new Validator()
+    validator
+      .add(form.title, 'isNonEmpty', '标题不能为空')
+      .add(form.content, 'isNonEmpty', '内容不能为空')
+      .check()
+      .then(async () => {
+        await API.updateArticle(form)
+        props.updateList()
+        Toast.success('更新成功')
+      })
+      .catch(msg => {
+        Toast.info(msg)
+      })
   }
   return (
     <div id="newsDetail" className="news-detail">
@@ -72,7 +84,7 @@ export default function NewsDetail(props) {
         <ButtonGroup>
           <Button onClick={() => setForm(props.form)}>恢复</Button>
           <Button type="primary" onClick={updateArticle}>
-            更改
+            更新
           </Button>
         </ButtonGroup>
       </div>

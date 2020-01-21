@@ -4,12 +4,12 @@ const Merge = require('webpack-merge')
 const webpack = require('webpack')
 const cwd = process.cwd()
 const CLI_NODE_MODULES = path.resolve(__dirname, '../node_modules')
-const EXTERNAL_NODE_MODULES = path.resolve(cwd, 'node_modules')
-const DIST_PATH = path.resolve(cwd, 'dist')
+const EXTERNAL_NODE_MODULES = path.resolve('node_modules')
+const DIST_PATH = path.resolve('dist')
 const argv = require('optimist').argv
 const __DEV__ = argv['dev']
 const __BUILD__ = !__DEV__ && argv['build']
-const EXTERNAL_CONF = require(path.resolve(cwd, './.mkrc'))
+const EXTERNAL_CONF = require(path.resolve('.mkrc'))
 const __PAGES__ = fs.readdirSync(path.resolve(__dirname, '../src/pages'))
 const ENV = __DEV__
   ? 'dev'

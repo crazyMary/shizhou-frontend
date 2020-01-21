@@ -90,8 +90,7 @@ export function picUrl(name) {
   return name ? SERVER_HOST + name : ''
 }
 
-export async function _uploadImg(e) {
-  const [file] = e.target.files
+export async function _uploadImg(file) {
   if (!file) return
   const fd = new FormData()
   fd.append('file', file)
