@@ -2,6 +2,8 @@ import '@shared/global.scss'
 import './index.scss'
 import { getUserInfo } from '@shared/utils'
 import storage from '@shared/storage'
+import { useEffect, useState } from 'react'
+
 storage.prefix = `sz-${ENV}`
 
 export default function Layout(props) {
@@ -22,6 +24,15 @@ Layout.Manage = function(props) {
 }
 
 Layout.Manage.Header = function() {
+  const [time, setTime] = useState(new Date().toLocaleString())
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleString())
+    }, 1000)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
   const userInfo = getUserInfo()
   const navs = [
     { title: '新闻动态', value: 'm_news' },
@@ -48,9 +59,10 @@ Layout.Manage.Header = function() {
         ))}
       </div>
       <div className="user">
-        <span className="name">{userInfo.nickname}</span>
+        <span className="name">您好,{userInfo.nickname}!</span>
+        <span className="time">{time}</span>
         <span className="loginout" onClick={loginOut}>
-          退出
+          退出登录
         </span>
       </div>
     </header>

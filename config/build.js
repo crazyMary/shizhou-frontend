@@ -13,6 +13,7 @@ function buildDll() {
 }
 
 function build() {
+  console.time('buildTime')
   webpack(require('./webpack.build')).run(function(err, stats) {
     if (err) return console.log(err)
     if (stats.compilation.errors.toString()) {
@@ -24,6 +25,7 @@ function build() {
         colors: true
       })
     )
+    console.timeEnd('buildTime')
   })
 }
 

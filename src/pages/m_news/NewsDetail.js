@@ -40,9 +40,9 @@ export default function NewsDetail(props) {
   }
   return (
     <div id="newsDetail" className="news-detail">
-      <div className="news-detail-top">新闻详情</div>
+      <div className="news-detail-top">新闻动态详情</div>
       <div className="news-form-item">
-        <div className="title">新闻标题</div>
+        <div className="title">标题</div>
         <div className="input">
           <Input
             placeholder="输入标题"
@@ -52,7 +52,7 @@ export default function NewsDetail(props) {
         </div>
       </div>
       <div className="news-form-item">
-        <div className="title">新闻关键词</div>
+        <div className="title">关键词</div>
         <div className="input">
           <Input
             placeholder="输入关键词"
@@ -62,7 +62,7 @@ export default function NewsDetail(props) {
         </div>
       </div>
       <div className="news-form-item">
-        <div className="title">新闻封面</div>
+        <div className="title">封面</div>
         <div className="input">
           <label>
             <ArticleImg src={picUrl(form.imgSrc)} />
@@ -71,7 +71,7 @@ export default function NewsDetail(props) {
         </div>
       </div>
       <div className="news-form-item">
-        <div className="title">新闻内容</div>
+        <div className="title">内容</div>
         <div className="input">
           <Editor
             height={400}

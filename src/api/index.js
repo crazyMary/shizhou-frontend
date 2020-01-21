@@ -13,15 +13,13 @@ http.unauthHandler = function(code, message) {
 const privateApi = '/api/private'
 const publicApi = '/api/public'
 
-export const login = params => http.post(`${publicApi}/user/login`, params)
-export const adduser = params => http.post(`${privateApi}/user/add`, params)
-export const uploadImg = (params, opts) =>
-  http.post(`${privateApi}/img/upload`, params, opts)
-export const addArticle = params =>
-  http.post(`${privateApi}/article/add`, params)
-export const getArticles = params =>
-  http.get(`${privateApi}/article/list`, params)
-export const updateArticle = params =>
-  http.post(`${privateApi}/article/update`, params)
+export const login = data => http.post(`${publicApi}/user/login`, data)
+export const adduser = data => http.post(`${privateApi}/user/add`, data)
+export const uploadImg = data => http.post(`${privateApi}/img/upload`, data)
+export const addArticle = data => http.post(`${privateApi}/article/add`, data)
+export const getArticles = (params, opts) =>
+  http.get(`${privateApi}/article/list`, params, opts)
+export const updateArticle = data =>
+  http.post(`${privateApi}/article/update`, data)
 export const removeArticle = args =>
   http.send({ url: `${privateApi}/article/remove`, method: 'delete', ...args })

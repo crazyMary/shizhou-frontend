@@ -1,16 +1,17 @@
-const { path, webpack, cwd } = require('./shared')
+const { path, webpack } = require('./shared')
+
 module.exports = {
   entry: {
     react_dll: ['react', 'react-dom', 'classnames', 'wangeditor']
   },
   output: {
-    path: path.resolve(cwd, 'dist'),
+    path: path.resolve('dist'),
     filename: '[name].js',
     library: '[name]_library'
   },
   plugins: [
     new webpack.DllPlugin({
-      path: path.join(cwd, 'dist/[name]-manifest.json'),
+      path: path.resolve('dist/[name]-manifest.json'),
       name: '[name]_library'
     })
   ]

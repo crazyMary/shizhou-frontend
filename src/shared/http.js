@@ -31,7 +31,7 @@ instance.interceptors.response.use(
     const status = e.response.status
     switch (status) {
       case UNAUTH_CODE:
-        http.unauthHandler(status, '用户未登录或者认证过期')
+        http.unauthHandler(status, '用户未登录或认证过期')
         break
       default:
         break
@@ -56,22 +56,28 @@ const http = {
   },
   get: (url, params, opts = {}) => {
     if (!isObj(opts)) throw new TypeError('opts should be object')
-    return http.send({ method: 'get', url, params })
+    return http.send({ method: 'get', url, params, ...opts })
   },
   post: (url, data, opts = {}) => {
     if (!isObj(opts)) throw new TypeError('opts should be object')
-    return http.send({ method: 'post', url, data })
+    return http.send({ method: 'post', url, data, ...opts })
   },
   send: async args => {
     if (!isObj(args)) throw new TypeError('argument should be object')
     try {
-      const setting = Object.assign({}, args, { baseURL: http.domain })
+      const { loading, ...setting } = {
+        baseURL: http.domain,
+        loading: true, // loading标识
+        ...args
+      }
       if (!httpLock || setting.url.match(/refreshToken$/)) {
-        return await instance(setting)
+        if (loading) {
+        }
+        return await instance(setting).finally(() => {})
       } else {
         return new Promise(resolve => {
           httpQueue.push(resolve) //收集403之后的请求 待重新发送
-        }).then(() => instance(setting))
+        }).then(() => http.send(args))
       }
     } catch (e) {
       if (e.status === OUTDATEAUTH_CODE) {
