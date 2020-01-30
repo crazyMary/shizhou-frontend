@@ -67,7 +67,7 @@ const http = {
     try {
       const { loading, ...setting } = {
         baseURL: http.domain,
-        loading: true, // loading标识
+        loading: false, // loading标识
         ...args
       }
       if (!httpLock || setting.url.match(/refreshToken$/)) {

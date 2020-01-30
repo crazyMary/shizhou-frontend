@@ -22,7 +22,8 @@
     font-size: 24px;
   }
   .navs {
-    transform: translateX(-50%);
+    flex: 1;
+    text-align: center;
     a {
       color: #666;
       margin: 0 10px;
