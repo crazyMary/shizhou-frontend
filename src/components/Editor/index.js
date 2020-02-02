@@ -1,9 +1,9 @@
 import WangEditor from 'wangeditor'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { picUrl, _uploadImg } from '@shared/utils'
 
 export default function(props) {
-  const ID = useMemo(() => `editor_${Date.now()}`)
+  const ID = useMemo(() => `editor_${Date.now()}`, [])
   useEffect(
     function() {
       const editor = new WangEditor(`#${ID}`)
@@ -19,7 +19,7 @@ export default function(props) {
       editor.txt.html(props.content)
       editor.$textContainerElem[0].style.height = props.height + 'px'
     },
-    [props.content]
+    [props.contentId]
   )
   return <div id={ID}></div>
 }

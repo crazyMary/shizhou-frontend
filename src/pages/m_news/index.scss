@@ -21,6 +21,7 @@
         border-radius: 4px;
         padding: 4px 10px;
         background-color: #eee;
+        cursor: pointer;
       }
     }
     &-body {
@@ -87,7 +88,7 @@
     align-items: center;
     .title {
       color: #666;
-      flex-basis: 4em;
+      flex-basis: 6em;
       text-align: right;
       margin-right: 10px;
       flex-shrink: 0;

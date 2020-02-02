@@ -76,6 +76,7 @@ export default function NewsDetail(props) {
           <Editor
             height={400}
             content={form.content}
+            contentId={form._id}
             contentChange={content => formChange('content', content)}
           />
         </div>
